@@ -9,7 +9,8 @@ type ComponentTableProps = {
 
 const ComponentTable: React.FC<ComponentTableProps & WithMeiosisProps> = ({globalActions, globalStates, className}) => {
     return <div className="component-table">
-        component table here
+        
+        
     </div>;
 }
 

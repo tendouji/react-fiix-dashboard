@@ -57,13 +57,19 @@ class App extends React.Component<AppProps, AppState> {
         }, 250);
     };
 
+    showHideSideMenuEvent = (isHidden: boolean): CustomEvent<{isHidden: boolean}> => new CustomEvent('showHideSideMenu', { 
+        detail: { isHidden } 
+    });
+
     onShowHideMenuHandler = () => {
         const dashboardDom = this.dashboardRef.current;
         if(dashboardDom) {
             if(dashboardDom.classList.contains('menu-close')) {
                 dashboardDom.classList.remove('menu-close');
+                window.dispatchEvent(this.showHideSideMenuEvent(false));
             } else {
                 dashboardDom.classList.add('menu-close');
+                window.dispatchEvent(this.showHideSideMenuEvent(true));
             }
         }
     };

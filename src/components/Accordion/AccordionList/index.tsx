@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import styled from "styled-components";
 import { lighten } from "polished";
 import { 
@@ -22,84 +22,22 @@ const AccordionList: React.FC<AccordionListProps & WithMeiosisProps> = ({
     title, 
     children, 
     titleIcon,
-    defaultOpen,
-    maxContentHeight,
-    className
+    onClick,
+    className,
 }) => {
-    let contentHeight = 0;
-    const listContainerRef = useRef<HTMLDivElement>(null);
-    const listContainer: HTMLDivElement = listContainerRef.current!;
-    const listBodyRef = useRef<HTMLDivElement>(null);
-    const listBody: HTMLDivElement = listBodyRef.current!;
-
     const onShowHideBody = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        if( listContainer.classList.contains('open') ) {
-            collapseSection();
-        } else {
-            expandSection();
+        if(!!onClick && typeof onClick === 'function') {
+            onClick(e);
         }
     };
-
-    const collapseSection = () => {
-        const elementTransition = listBody.style.transition;
     
-        listBody.style.transition = '';
-        
-        requestAnimationFrame(() => {
-            listBody.style.height = contentHeight + 'px';
-            listBody.style.transition = elementTransition;
-            
-            requestAnimationFrame(() => {
-                listBody.style.height = 0 + 'px'
-                listBody.style.removeProperty('height');
-            });
-        });
-    
-        listContainer.classList.remove('open');
-    };
-
-    const expandSection = () => {
-        listContainer.classList.add('open');
-        listBody.style.height = contentHeight + 'px';
-
-        const listenerFunc = () => {
-            listBody.removeEventListener('transitionend', listenerFunc);
-        };
-        listBody.addEventListener('transitionend', listenerFunc);
-    };
-
-    const getListBodyHeight = () => {
-        if(!!listBody) {
-            // NOTE: 
-            // initial page load return wrong scrollHeight due to font family issue
-            // there should be a better way to handle delay load instead of setTimeout
-            // perhaps do proper font load done listener before entire app starts
-
-            setTimeout(() => {
-                const innerContent = listBody.getElementsByClassName('pad-wrapper')[0];
-                contentHeight = (innerContent.scrollHeight !== listBody.scrollHeight) ? innerContent.scrollHeight : listBody.scrollHeight;
-                if(!!maxContentHeight) {
-                    contentHeight = maxContentHeight < listBody.scrollHeight ? maxContentHeight : listBody.scrollHeight;
-                }
-                if(!!defaultOpen) expandSection();
-            }, 400);
-        }
-    }
-    
-    getListBodyHeight();
-    window.addEventListener('resizeEnd', (e:Event) => {
-        getListBodyHeight();
-    });
-
     return (
         <AccordionListWrapper 
             className={[
                 "accordion-list",
-                (!!defaultOpen ? ' open' : ''), 
                 (!!className ? ' ' + className : '')
             ].join('')}
             themeColor={globalStates!.themeColor}
-            ref={listContainerRef} 
         >
             <div 
                 className={[
@@ -111,10 +49,7 @@ const AccordionList: React.FC<AccordionListProps & WithMeiosisProps> = ({
                 <div className="icon"><i className="material-icons">{ titleIcon }</i></div>
                 <div className="text">{ title }</div>
             </div>
-            <div 
-                className="accordion-content" 
-                ref={listBodyRef}
-            >
+            <div className="accordion-content">
                 <div className="pad-wrapper">
                     {children}
                 </div>
@@ -128,12 +63,7 @@ export default withMeiosis(AccordionList);
 
 const AccordionListWrapper = styled.div<StyledColorProps>`
     width: 100%;
-    border-bottom: ${ props => elementSizes.Border1Pixel(lighten(colorRange.L5, props.themeColor.grayColor!)) };
     
-    &:last-child {
-        border-bottom: 0;
-    }
-
     & .accordion-title {
         position: relative;
         display: flex;
@@ -198,15 +128,17 @@ const AccordionListWrapper = styled.div<StyledColorProps>`
     & .accordion-content {
         height: 0;
         overflow: hidden;
+        border-top: ${ props => elementSizes.Border1Pixel(lighten(colorRange.L5, props.themeColor.grayColor!)) };
         transition: height ${ animations.Transition };
         
         & .pad-wrapper {
             padding: ${ gaps.Common }; 
-            border-top: ${ props => elementSizes.Border1Pixel(lighten(colorRange.L5, props.themeColor.grayColor!)) };
         }
     }
 
     &.open {
+        border-bottom: ${ props => elementSizes.Border1Pixel(lighten(colorRange.L5, props.themeColor.grayColor!)) };
+
         & .accordion-title {
             &:after {
                 content: 'expand_less';
@@ -224,5 +156,19 @@ const AccordionListWrapper = styled.div<StyledColorProps>`
                 padding: 0; 
             }
         }    
+    }
+                
+    &:last-child {
+        & .accordion-content {
+            border-top: 0;
+        }
+
+        &.open {
+            border-bottom: 0;
+            
+            & .accordion-content {
+                border-top: ${ props => elementSizes.Border1Pixel(lighten(colorRange.L5, props.themeColor.grayColor!)) };
+            }
+        }
     }
 `;

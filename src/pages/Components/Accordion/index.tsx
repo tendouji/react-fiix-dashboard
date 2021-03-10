@@ -85,7 +85,7 @@ const ComponentAccordion: React.FC<ComponentAccordionProps & WithMeiosisProps> =
         
         <div className="columnised">
             <div className="col-50">
-                {/* <h4>Basic Accordion</h4>
+                <h4>Basic Accordion</h4>
                 <Accordion 
                     listData={getAccordionHandler('basic')} 
                 />
@@ -97,7 +97,7 @@ const ComponentAccordion: React.FC<ComponentAccordionProps & WithMeiosisProps> =
                     listData={getAccordionHandler('with-icons')} 
                 />
                 <br />
-                <br />                 */}
+                <br />
                 <h4>Accordion with first item open</h4>
                 <Accordion 
                     listData={getAccordionHandler('with-icons')} 
@@ -105,8 +105,17 @@ const ComponentAccordion: React.FC<ComponentAccordionProps & WithMeiosisProps> =
                 />
                 <br />
                 <br />
+                <h4>Accordion with allow multiple items open</h4>
+                <p>Click to trigger open items</p>
+                <Accordion 
+                    listData={getAccordionHandler('with-icons')} 
+                    firstItemOpen={true}
+                    allowMultipleOpen={true}
+                />
+                <br />
+                <br />
             </div>
-            {/* <div className="col-50">
+            <div className="col-50">
                 <h4>Accordion with maximum content height</h4>
                 <Accordion 
                     listData={getAccordionHandler('with-icons')} 
@@ -127,7 +136,7 @@ const ComponentAccordion: React.FC<ComponentAccordionProps & WithMeiosisProps> =
                 
                 <br />
                 <br />
-            </div> */}
+            </div>
         </div> 
     </div>;
 }
