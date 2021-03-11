@@ -88,13 +88,14 @@ export type AccordionListType = {
     onClick?: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void,
 }
 
-// export type AccordionListType = {
-//     title: string,
-//     children: React.ReactNode,
-//     titleIcon?: string,
-//     maxContentHeight?: number,
-//     onClick?: (e: any) => void,
-// }
+export type TableDataType = {
+    headerData?: (string | number)[],
+    rowData: any[],
+    title?: string,
+    highlightAltRow?: boolean,
+    cellNoWrap?: boolean,
+    columnRelayoutResponsive?: boolean,
+}
 
 export type GlobalStateInitialType = {
     curPage: string,
