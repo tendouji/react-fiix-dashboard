@@ -1,0 +1,16 @@
+{
+    "short_name": "FiiX",
+    "name": "FiiX Dashboard",
+    "icons": [
+        {
+            "src": "logo192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        }
+    ],
+    "start_url": ".",
+    "display": "fullscreen",
+    "theme_color": "purple",
+    "background_color": "purple",
+    "description": "Let's FiiX it!"
+}
