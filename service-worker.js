@@ -1,13 +1,16 @@
+const basePath = '/react-fiix-dashboard';
+
 self.addEventListener('install', (e) => {
     e.waitUntil(
         caches.open('fiix-store').then((cache) => cache.addAll([
-            '/images/logo-site.png',
-            '/images/profiles/profile.jpg',
-            '/images/profiles/profile2.jpg',
-            '/images/profiles/profile3.jpg',
-            '/images/profiles/profile4.jpg',
-            '/images/profiles/profile5.jpg',
-            '/images/profiles/profile6.jpg',
+            basePath + '/',
+            basePath + '/images/logo-site.png',
+            basePath + '/images/profiles/profile.jpg',
+            basePath + '/images/profiles/profile2.jpg',
+            basePath + '/images/profiles/profile3.jpg',
+            basePath + '/images/profiles/profile4.jpg',
+            basePath + '/images/profiles/profile5.jpg',
+            basePath + '/images/profiles/profile6.jpg',
         ])),
     );
 });
