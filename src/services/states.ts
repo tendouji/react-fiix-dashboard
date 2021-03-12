@@ -1,4 +1,5 @@
 // import flyd from "flyd";
+import { assets } from "../constants/routes";
 import { 
     GlobalActionType, 
     GlobalStateInitialType, 
@@ -40,7 +41,7 @@ export const GlobalInitialState: GlobalStateInitialType = {
         username: 'admin',
         displayName: 'Patrick Lee Jun Ming',
         email: 'patrick.lee@fiix.com',
-        imagePath: '/profile.jpg',
+        imagePath: assets.IMAGE + '/profiles/profile.jpg',
         createdAt: '20200809',
         roles: RoleType.Administrator,
         notification: [{
@@ -48,14 +49,14 @@ export const GlobalInitialState: GlobalStateInitialType = {
             notificationList: [{
                 type: 'friend',
                 title: 'Toni Leigh has added you.',
-                imagePath: '/profile2.jpg',
+                imagePath: assets.IMAGE + '/profiles/profile2.jpg',
                 redirectPath: '/form',
                 read: false,
                 createdAt: '20200809',
             }, {
                 type: 'message',
                 title: 'Pierre Ferry messaged you.',
-                imagePath: '/profile3.jpg',
+                imagePath: assets.IMAGE + '/profiles/profile3.jpg',
                 redirectPath: '/components/alerts',
                 read: false,
                 createdAt: '20200809',
@@ -72,21 +73,21 @@ export const GlobalInitialState: GlobalStateInitialType = {
             notificationList: [{
                 type: 'message',
                 title: 'Chin Ming messaged you.',
-                imagePath: '/profile4.jpg',
+                imagePath: assets.IMAGE + '/profiles/profile4.jpg',
                 redirectPath: '/',
                 read: false,
                 createdAt: '20200809',
             }, {
                 type: 'friend',
                 title: 'Ahmad Shah has added you.',
-                imagePath: '/profile5.jpg',
+                imagePath: assets.IMAGE + '/profiles/profile5.jpg',
                 redirectPath: '/',
                 read: false,
                 createdAt: '20200809',
             }, {
                 type: 'message',
                 title: 'Valerie Goh messaged you.',
-                imagePath: '/profile6.jpg',
+                imagePath: assets.IMAGE + '/profiles/profile6.jpg',
                 redirectPath: '/',
                 read: false,
                 createdAt: '20200809',

@@ -3,12 +3,12 @@ import {
     PageObjectType, 
     PageType 
 } from "../models";
-import { routes } from "./routes";
+import { assets, routes } from "./routes";
 
 export const appData: GeneralObjType = {
     title: 'FiiX',
-    logoPath: '/logo-site.png',
-    profilePath: '/profile.jpg',
+    logoPath: assets.IMAGE + '/logo-site.png',
+    profilePath: assets.IMAGE + '/profiles/profile.jpg',
 };
 
 export const pageList: PageObjectType[] = [

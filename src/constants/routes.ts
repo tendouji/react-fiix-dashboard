@@ -1,5 +1,11 @@
 import { GeneralObjType } from "../models";
 
+const assets: GeneralObjType = {
+    ROOT: process.env.PUBLIC_URL,
+
+    get IMAGE() { return this.ROOT + '/images' },
+}
+
 const routes: GeneralObjType = {
     HOME: '/',
     
@@ -24,4 +30,5 @@ const routes: GeneralObjType = {
 
 export {
     routes,
+    assets,
 }
