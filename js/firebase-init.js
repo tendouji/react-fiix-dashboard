@@ -32,7 +32,7 @@ const handleFirebaseMessagePayload = (payload) => {
 const firebaseMessaging = firebase.messaging();
 
 console.log(navigator, navigator.serviceWorker);
-navigator.serviceWorker.register('/service-worker.js')
+navigator.serviceWorker.register('/react-fiix-dashboard/service-worker.js')
 .then(registration => {
     firebaseMessaging.useServiceWorker(registration)
 })
