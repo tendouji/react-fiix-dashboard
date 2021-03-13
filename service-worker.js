@@ -2,21 +2,21 @@ importScripts("https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js");
 importScripts("https://www.gstatic.com/firebasejs/8.3.0/firebase-messaging.js");
 importScripts("https://www.gstatic.com/firebasejs/8.3.0/firebase-analytics.js");
 
+importScripts("./js/helpers.js");
+importScripts("./js/firebase-init.js");
 
-const basePath = '/react-fiix-dashboard';
-// const basePath = '';
 
 self.addEventListener('install', (e) => {
     e.waitUntil(
         caches.open('fiix-store').then((cache) => cache.addAll([
-            basePath + '/',
-            basePath + '/images/logo-site.png',
-            basePath + '/images/profiles/profile.jpg',
-            basePath + '/images/profiles/profile2.jpg',
-            basePath + '/images/profiles/profile3.jpg',
-            basePath + '/images/profiles/profile4.jpg',
-            basePath + '/images/profiles/profile5.jpg',
-            basePath + '/images/profiles/profile6.jpg',
+            curBasePath + '/',
+            curBasePath + '/images/logo-site.png',
+            curBasePath + '/images/profiles/profile.jpg',
+            curBasePath + '/images/profiles/profile2.jpg',
+            curBasePath + '/images/profiles/profile3.jpg',
+            curBasePath + '/images/profiles/profile4.jpg',
+            curBasePath + '/images/profiles/profile5.jpg',
+            curBasePath + '/images/profiles/profile6.jpg',
         ])),
     );
 });
@@ -30,42 +30,12 @@ self.addEventListener('fetch', (e) => {
 
 
 // FIREBASE
-firebase.initializeApp({
-    apiKey: "AIzaSyBYmq6SLkRUEa0mTblclScInyKUssD73sI",
-    authDomain: "fiix-dashboard.firebaseapp.com",
-    projectId: "fiix-dashboard",
-    storageBucket: "fiix-dashboard.appspot.com",
-    messagingSenderId: "1089880642239",
-    appId: "1:1089880642239:web:5d1869b273983720de2c0a",
-    measurementId: "G-PX2BD9S4JF"
-});
-
-const bgHandleFirebaseMessagePayload = (payload) => {
-    console.log('SW bgHandleFirebaseMessagePayload', payload);
-    const notificationData = !!payload.data && !!payload.data.notification 
-    ? payload.data.notification
-    : null;
-
-    if(!!notificationData) {
-        // console.log('handleFirebaseMessagePayload', notificationData);
-        const {title, ...options} = JSON.parse(notificationData);
-
-        return {
-            title: title || 'Test Notification Title',
-            options: {
-                body: options.body || 'Test Notification Message',
-                icon: options.icon || '/images/logo-site.png',
-            }
-        }
-    }
-
-    return {};
-};
+firebase.initializeApp(firebaseInitObj);
 
 const firebaseMessaging = firebase.messaging();
 
 firebaseMessaging.setBackgroundMessageHandler(function(payload) {
-    const notificationData = bgHandleFirebaseMessagePayload(payload);
+    const notificationData = handleFirebaseMessagePayload(payload, 'setBackgroundMessageHandler');
     
     if(!!notificationData.title) {
         return self.registration.showNotification(
