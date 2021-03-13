@@ -64,9 +64,7 @@ export function register(config?: Config) {
 
 function registerValidSW(swUrl: string, config?: Config) {
     navigator.serviceWorker
-        .register(swUrl, {
-            scope: '.' 
-        })
+        .register(swUrl)
         .then(registration => {
             registration.onupdatefound = () => {
                 const installingWorker = registration.installing;
@@ -74,6 +72,7 @@ function registerValidSW(swUrl: string, config?: Config) {
                     return;
                 }
                 installingWorker.onstatechange = () => {
+                    console.log('registerValidSW, state:', installingWorker.state);
                     if (installingWorker.state === 'installed') {
                         if (navigator.serviceWorker.controller) {
                             // At this point, the updated precached content has been fetched,
@@ -110,6 +109,7 @@ function registerValidSW(swUrl: string, config?: Config) {
 
 function checkValidServiceWorker(swUrl: string, config?: Config) {
     // Check if the service worker can be found. If it can't reload the page.
+    console.log('checkValidServiceWorker, start fetching...');
     fetch(swUrl, {
         headers: { 'Service-Worker': 'script' }
     })

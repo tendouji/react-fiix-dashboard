@@ -50,3 +50,18 @@ TODO:
 - detect resize on side menu as well
 - form elements
 - table styling
+
+
+
+curl -X POST -H "Authorization: key=AAAA_cHy0r8:APA91bGyRRvDAM35Rak5ixCFruqjkSjYvTUz51Ui33ERLBR24o-C-EDmsKLjlj7Np4joxQp24EvQTEcjTMQPosRkGPRuszgNufbUtsw2ld2zp0DSq0vsQAoNHpMHmvRvGFynkQkRv6nc" \
+   -H "Content-Type: application/json" \
+   -d '{
+  "data": {
+    "notification": {
+        "title": "Brand New FCM Message 3",
+        "body": "This is another FCM Message 3",
+        "icon": "/images/logo-site.png",
+    }
+  },
+  "to": "ffd5r3uiu2UtimjVcka3Tq:APA91bHDbJ4dKocAt0dKpR_NjL29dEvzoNXj8tphedXbcKXYYuKamXVLaNUBLL9im7DTtvjK_0M3hJP9v8nceMCviwSUagqQMjw6IYUMbDJ0y2FzrsBmOK_M6Yffb3Q2jCNoiw0QJhG8"
+}' https://fcm.googleapis.com/fcm/send
