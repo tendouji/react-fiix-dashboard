@@ -1,6 +1,6 @@
-importScripts("https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js");
-importScripts("https://www.gstatic.com/firebasejs/7.16.1/firebase-messaging.js");
-importScripts("https://www.gstatic.com/firebasejs/7.16.1/firebase-analytics.js");
+importScripts("https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js");
+importScripts("https://www.gstatic.com/firebasejs/8.3.0/firebase-messaging.js");
+importScripts("https://www.gstatic.com/firebasejs/8.3.0/firebase-analytics.js");
 
 
 const basePath = '/react-fiix-dashboard';
@@ -40,7 +40,8 @@ firebase.initializeApp({
     measurementId: "G-PX2BD9S4JF"
 });
 
-const handleFirebaseMessagePayload = (payload) => {
+const bgHandleFirebaseMessagePayload = (payload) => {
+    console.log('SW bgHandleFirebaseMessagePayload', payload);
     const notificationData = !!payload.data && !!payload.data.notification 
     ? payload.data.notification
     : null;
@@ -64,7 +65,7 @@ const handleFirebaseMessagePayload = (payload) => {
 const firebaseMessaging = firebase.messaging();
 
 firebaseMessaging.setBackgroundMessageHandler(function(payload) {
-    const notificationData = handleFirebaseMessagePayload(payload);
+    const notificationData = bgHandleFirebaseMessagePayload(payload);
     
     if(!!notificationData.title) {
         return self.registration.showNotification(

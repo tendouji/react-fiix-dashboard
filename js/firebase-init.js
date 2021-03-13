@@ -9,6 +9,7 @@ firebase.initializeApp({
 });
 
 const handleFirebaseMessagePayload = (payload) => {
+    console.log('Init bgHandleFirebaseMessagePayload', payload);
     const notificationData = !!payload.data && !!payload.data.notification 
     ? payload.data.notification
     : null;
