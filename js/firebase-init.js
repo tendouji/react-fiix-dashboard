@@ -1,6 +1,7 @@
 const firebaseInitObj = {
     apiKey: "AIzaSyBYmq6SLkRUEa0mTblclScInyKUssD73sI",
     authDomain: "fiix-dashboard.firebaseapp.com",
+    databaseURL: "https://fiix-dashboard-default-rtdb.firebaseio.com",    
     projectId: "fiix-dashboard",
     storageBucket: "fiix-dashboard.appspot.com",
     messagingSenderId: "1089880642239",
@@ -9,13 +10,12 @@ const firebaseInitObj = {
 };
 
 const handleFirebaseMessagePayload = (payload, origin) => {
-    console.log(origin, ' bgHandleFirebaseMessagePayload', payload);
+    console.log(origin, 'handleFirebaseMessagePayload', payload);
     const notificationData = !!payload.data && !!payload.data.notification 
     ? payload.data.notification
     : null;
 
     if(!!notificationData) {
-        // console.log('handleFirebaseMessagePayload', notificationData);
         const {title, ...options} = JSON.parse(notificationData);
 
         return {
@@ -28,4 +28,12 @@ const handleFirebaseMessagePayload = (payload, origin) => {
     }
 
     return {};
+};
+
+
+const firebaseDB = firebase.database().ref();
+var deviceFCM = firebaseDB.child('device-fcm');
+
+const addFCMData = ({user, token}) => {
+    deviceFCM.push({token, user});
 };
