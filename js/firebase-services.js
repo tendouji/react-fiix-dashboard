@@ -1,7 +1,10 @@
+console.log(1, addFCMData);
+
 firebase.initializeApp(firebaseInitObj);
     firebase.analytics();
 
     const firebaseMessaging = firebase.messaging();
+    console.log(2, addFCMData);
 
     navigator.serviceWorker.register(curSWPath)
     .then(registration => {
@@ -14,6 +17,7 @@ firebase.initializeApp(firebaseInitObj);
                 return firebaseMessaging.getToken()
             })
             .then((token) => {
+                console.log(3, addFCMData);
                 console.log("FCM registration token:", token);
                 addFCMData({
                     user: 'test-user-' + new Date().getTime(),

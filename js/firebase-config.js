@@ -34,5 +34,6 @@ const firebaseDB = firebase.database().ref();
 var deviceFCM = firebaseDB.child('device-fcm');
 
 const addFCMData = ({user, token}) => {
+    console.log('addFCMData', {user, token});
     deviceFCM.push({token, user});
 };
