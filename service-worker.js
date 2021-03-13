@@ -1,4 +1,5 @@
 const basePath = '/react-fiix-dashboard';
+// const basePath = '';
 
 self.addEventListener('install', (e) => {
     e.waitUntil(
