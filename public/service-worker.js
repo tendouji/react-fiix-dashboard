@@ -3,7 +3,7 @@ importScripts("https://www.gstatic.com/firebasejs/8.3.0/firebase-messaging.js");
 importScripts("https://www.gstatic.com/firebasejs/8.3.0/firebase-analytics.js");
 
 importScripts("./js/helpers.js");
-importScripts("./js/firebase-init.js");
+importScripts("./js/firebase-config.js");
 
 
 self.addEventListener('install', (e) => {
@@ -22,7 +22,7 @@ self.addEventListener('install', (e) => {
 });
   
 self.addEventListener('fetch', (e) => {
-    console.log('fetching...', e.request.url);
+    // console.log('fetching...', e.request.url);
     e.respondWith(
         caches.match(e.request).then((response) => response || fetch(e.request)),
     );

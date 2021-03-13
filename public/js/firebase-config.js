@@ -1,6 +1,7 @@
 const firebaseInitObj = {
     apiKey: "AIzaSyBYmq6SLkRUEa0mTblclScInyKUssD73sI",
     authDomain: "fiix-dashboard.firebaseapp.com",
+    databaseURL: "https://fiix-dashboard-default-rtdb.firebaseio.com",    
     projectId: "fiix-dashboard",
     storageBucket: "fiix-dashboard.appspot.com",
     messagingSenderId: "1089880642239",

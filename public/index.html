@@ -18,46 +18,15 @@
 
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.3.0/firebase-analytics.js"></script>
     <script src="./js/helpers.js"></script>
-    <script src="./js/firebase-init.js"></script>
+    <script src="./js/firebase-config.js"></script>
+    <script src="./js/firebase-database.js"></script>
+    <script src="./js/firebase-services.js"></script>
     
     <script>
-    firebase.initializeApp(firebaseInitObj);
-    firebase.analytics();
-    
-    const firebaseMessaging = firebase.messaging();
-
-    navigator.serviceWorker.register(curSWPath)
-    .then(registration => {
-        firebaseMessaging.useServiceWorker(registration)
-
-        firebaseMessaging
-            .requestPermission()
-            .then(() => {
-                console.log("Notification permission granted.");
-                return firebaseMessaging.getToken()
-            })
-            .then((token) => {
-                console.log("FCM registration token:", token);
-            })
-            .catch((err) => {
-                console.log("Unable to get permission to notify.", err);
-            });
-        
-        firebaseMessaging.onMessage((payload) => {
-            const notificationData = handleFirebaseMessagePayload(payload, 'onMessage');
-    
-            if(!!notificationData.title) {
-                navigator.serviceWorker.getRegistrations().then(registration => {
-                    registration[0].showNotification(
-                        notificationData.title, 
-                        notificationData.options
-                    );
-                });
-            }
-        });
-    })
+        console.log('v1.0.0');
     </script>
 </body>
 
