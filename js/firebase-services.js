@@ -1,7 +1,14 @@
-console.log(1, addFCMData);
-
 firebase.initializeApp(firebaseInitObj);
     firebase.analytics();
+
+    const firebaseDB = firebase.database().ref();
+    var deviceFCM = firebaseDB.child('device-fcm');
+    
+    const addFCMData = ({user, token}) => {
+        console.log('addFCMData', {user, token});
+        deviceFCM.push({token, user});
+    };
+        
 
     const firebaseMessaging = firebase.messaging();
     console.log(2, addFCMData);
