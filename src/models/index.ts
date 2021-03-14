@@ -17,6 +17,15 @@ export enum PageType {
     FAQ = 'faq',
 }
 
+export type APIObjType = {
+    method: string,
+    path: string,
+}
+
+export type APIObjGroupType = {
+    [key: string]: APIObjType,
+}
+
 export type PageObjectType = {
     label: string,
     type?: string,

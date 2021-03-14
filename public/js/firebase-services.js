@@ -1,7 +1,9 @@
 firebase.initializeApp(firebaseInitObj);
 firebase.analytics();
 
-const firebaseDB = new FirebaseDB(firebase.database().ref());    
+const firebaseDB = new FirebaseDB(firebase.database().ref());
+window.firebaseDB = firebaseDB;
+
 const firebaseMessaging = firebase.messaging();
 
 navigator.serviceWorker.register(curSWPath)

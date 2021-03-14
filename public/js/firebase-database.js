@@ -7,9 +7,25 @@ class FirebaseDB {
         this.deviceFCM = this.firebaseDB.child('device-fcm');
     }
 
+    getSnapshot() {
+        return this.deviceFCM.get()
+            .then(function(snapshot) {
+                if(snapshot.exists()) {
+                    return { data: snapshot.val() }
+                } else {
+                    return { data: {} };
+                }
+            }).catch(function(error) {
+                return { 
+                    error: true,
+                    data: error
+                };
+            });
+    }
+
     checkTokenExist(token) {
         let curFCMSnapshot = null;
-        return this.deviceFCM.get()
+        return this.deviceFCM.get() // implement getSnapshot here
             .then(function(snapshot) {
                 if(snapshot.exists()) {
                     curFCMSnapshot = snapshot.val();

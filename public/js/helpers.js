@@ -1,3 +1,3 @@
-// const curBasePath = '/react-fiix-dashboard';
-const curBasePath = '';
+const curBasePath = '/react-fiix-dashboard';
+// const curBasePath = '';
 const curSWPath = curBasePath + '/service-worker.js';

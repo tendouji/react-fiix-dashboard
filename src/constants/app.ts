@@ -1,4 +1,5 @@
 import { 
+    APIObjGroupType,
     GeneralObjType, 
     PageObjectType, 
     PageType 
@@ -7,8 +8,17 @@ import { assets, routes } from "./routes";
 
 export const appData: GeneralObjType = {
     title: 'FiiX',
+    firebaseServerKey: '', // NOTE: this needs to store somewhere, but for testing purposes, let's put here first
     logoPath: assets.IMAGE + '/logo-site.png',
     profilePath: assets.IMAGE + '/profiles/profile.jpg',
+};
+
+export const apiPath: APIObjGroupType = {
+    pushNotification: {
+        method: 'POST',
+        path: 'https://fcm.googleapis.com/fcm/send'
+        // path: 'POST https://fcm.googleapis.com/v1/projects/fiix-dashboard/messages:send'
+    },
 };
 
 export const pageList: PageObjectType[] = [

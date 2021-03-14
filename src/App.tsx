@@ -29,6 +29,12 @@ import NotificationPanelList from './components/Notification/PanelList';
 import { StyledColorProps } from './models';
 
 
+declare global {
+    interface Window {
+        firebaseDB: any;
+    }
+}
+
 interface AppProps extends WithMeiosisProps {
     [key: string]: any
 }
