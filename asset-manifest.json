@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/react-fiix-dashboard/static/css/main.3d926b96.chunk.css",
-    "main.js": "/react-fiix-dashboard/static/js/main.02599bf8.chunk.js",
-    "main.js.map": "/react-fiix-dashboard/static/js/main.02599bf8.chunk.js.map",
+    "main.js": "/react-fiix-dashboard/static/js/main.d73b32ef.chunk.js",
+    "main.js.map": "/react-fiix-dashboard/static/js/main.d73b32ef.chunk.js.map",
     "runtime-main.js": "/react-fiix-dashboard/static/js/runtime-main.79e6e90c.js",
     "runtime-main.js.map": "/react-fiix-dashboard/static/js/runtime-main.79e6e90c.js.map",
     "static/js/2.8e1205ff.chunk.js": "/react-fiix-dashboard/static/js/2.8e1205ff.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.79e6e90c.js",
     "static/js/2.8e1205ff.chunk.js",
     "static/css/main.3d926b96.chunk.css",
-    "static/js/main.02599bf8.chunk.js"
+    "static/js/main.d73b32ef.chunk.js"
   ]
 }
