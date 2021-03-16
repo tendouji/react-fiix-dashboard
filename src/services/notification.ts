@@ -25,7 +25,7 @@ class Notification {
                     notification: {
                         title: this.notificationTitle,
                         body: this.notificationMessage,
-                        icon: "/react-fiix-dashboard/images/logo-site.png",
+                        icon: appData.logoPath,
                     }
                 },
                 to
@@ -89,7 +89,8 @@ class Notification {
 
     queueNotification(count: number) {
         if(count < this.recipientList.length) {
-            const { user, token, id } = this.recipientList[count];
+            // const { user, token, id } = this.recipientList[count];
+            const { token } = this.recipientList[count];
             this.sendNotification(token)
             .then((response) => {
                 // if(!!response.success) {

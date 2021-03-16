@@ -5,7 +5,7 @@ import {
     colorRange,
     elementSizes, 
     gaps, 
-    animations, 
+    durations, 
     fontSizes,
 } from "../../constants/layout";
 import NavigationList from "../NavigationList";
@@ -69,7 +69,7 @@ const SideMenuWrapper = styled.div<StyledColorProps>`
     height: 100%;
     width: ${ elementSizes.MenuWidth } ; 
     padding: 0 ${ gaps.Common } 0 0;
-    transition: width ${ animations.Transition };
+    transition: width ${ durations.Transition };
 
     & .body {
         height: 100%;
@@ -89,13 +89,13 @@ const SideMenuWrapper = styled.div<StyledColorProps>`
             height: ${ elementSizes.SiteTitleHeight }; 
             background: ${ props => props.themeColor.primaryColor } center / 70% auto no-repeat ;
             margin-right: ${ gaps.Common };
-            transition: margin-right ${ animations.Transition };
+            transition: margin-right ${ durations.Transition };
         }
         
         & .title {
             font-weight: 700;
             font-size: ${ fontSizes.XLarge };
-            transition: all ${ animations.Transition };
+            transition: all ${ durations.Transition };
         }
     }
 
@@ -103,7 +103,7 @@ const SideMenuWrapper = styled.div<StyledColorProps>`
         width: 100%; 
         height: calc(100% - ${ elementSizes.SiteTitleHeight } - ${ elementSizes.ProfileWidgetHeight } - ${ elementSizes.FooterHeight });
         overflow-y: auto;
-        transition: height ${ animations.Transition };
+        transition: height ${ durations.Transition };
     }
 
     & .clicker {
@@ -181,6 +181,29 @@ const SideMenuWrapper = styled.div<StyledColorProps>`
 
         & .menu-content {
             height: calc(100% - ${ elementSizes.SiteTitleHeight } - ${ elementSizes.ProfileWidgetHeight } - ${ elementSizes.FooterHeight });
+        }
+    }
+
+    @media screen and (max-width: ${elementSizes.MediaScreenMediumWidth}) {
+        width: ${ elementSizes.MenuCloseWidth }; 
+        
+        & .site-title {
+            & .logo {
+                margin-right: 0;
+            }
+
+            & .title {
+                width: 0;
+                font-size: 0;
+            }
+        }
+
+        & .menu-content {
+            height: calc(100% - ${ elementSizes.SiteTitleHeight } - ${ elementSizes.MenuCloseWidth } - ${ elementSizes.FooterHeight });
+        }
+    
+        & .clicker {
+            display: none;
         }
     }
 `;

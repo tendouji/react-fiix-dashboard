@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { 
     elementSizes, 
     gaps, 
-    animations, 
+    durations, 
     fontSizes, 
     styleGroup,
     colorRange
@@ -50,7 +50,7 @@ const ProfileWidgetWrapper = styled.div<StyledColorProps>`
     border-bottom: ${ props => elementSizes.Border1Pixel(lighten(colorRange.L5, props.themeColor.grayColor!)) };
     box-sizing: border-box;
     overflow: hidden;
-    transition: all ${ animations.Transition };
+    transition: all ${ durations.Transition };
 
     & .user-widget {
         display: flex;
@@ -61,13 +61,13 @@ const ProfileWidgetWrapper = styled.div<StyledColorProps>`
             height: calc(${ elementSizes.ProfileWidgetHeight } - 2 * ${ gaps.Small }); 
             background: ${ props => lighten(colorRange.L3, props.themeColor.grayColor!) } center / cover no-repeat ;
             border-radius: ${elementSizes.BorderRadius};
-            transition: all ${ animations.Transition };
+            transition: all ${ durations.Transition };
         }
 
         & .info {
             width: calc(100% - (${ elementSizes.ProfileWidgetHeight } - ${ gaps.Small } )); 
             overflow: hidden;
-            transition: width ${ animations.Transition };
+            transition: width ${ durations.Transition };
 
             & * {
                 line-height: 1.2em;
@@ -82,12 +82,12 @@ const ProfileWidgetWrapper = styled.div<StyledColorProps>`
                 // -webkit-box-orient: vertical; 
                 // text-overflow: -o-ellipsis-lastline;
                 ${styleGroup.TextOverflow}
-                transition: font ${ animations.Transition };
+                transition: font ${ durations.Transition };
             }
 
             & .rank {
                 font-size: ${ fontSizes.Small };
-                transition: font ${ animations.Transition };
+                transition: font ${ durations.Transition };
             }
 
             & .email {
@@ -147,6 +147,29 @@ const ProfileWidgetWrapper = styled.div<StyledColorProps>`
 
                 & .rank {
                     font-size: ${ fontSizes.Small };
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: ${elementSizes.MediaScreenMediumWidth}) {
+        height: ${ elementSizes.MenuCloseWidth }; 
+        padding: 0;
+
+        & .user-widget {
+            & .image {
+                width: ${ elementSizes.MenuCloseWidth };
+                height: ${ elementSizes.MenuCloseWidth };
+                border-radius: 0;
+            }
+
+            & .info {
+                & .display-name {
+                    font-size: 0;
+                }
+
+                & .rank {
+                    font-size: 0;
                 }
             }
         }

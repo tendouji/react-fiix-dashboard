@@ -6,6 +6,7 @@ import {
     ModalType, 
     PageType, 
     RoleType, 
+    SnackBarType, 
     ThemeColorType, 
     UserInfoType
 } from "../models";
@@ -14,6 +15,7 @@ import {
 export const GlobalInitialState: GlobalStateInitialType = {
     curPage: '',
     isLoggedIn: true,
+    isSWRegistered: false,
     showNotificationPanel: false,
     lockPageScroll: false,
     themeColor: {
@@ -37,6 +39,7 @@ export const GlobalInitialState: GlobalStateInitialType = {
         showNegativeButton: false,
         allowOverlayClose: false,
     },
+    snackBarListData: [],
     userInfo: {
         username: 'admin',
         displayName: 'Patrick Lee Jun Ming',
@@ -106,6 +109,8 @@ export const GlobalInitialState: GlobalStateInitialType = {
 const globalState: any = {
     GlobalInitialState,
     Actions: (update: flyd.Stream<unknown>): GlobalActionType => {
+        // let hideSnackBarTimer: number = 0;
+
         return {
             updateThemeColor: (data: ThemeColorType) => {
                 update((state: GlobalStateInitialType) => {
@@ -120,6 +125,12 @@ const globalState: any = {
             updateLoggedSession: (val: boolean) => {
                 update((state: GlobalStateInitialType) => {
                     state.isLoggedIn = val;
+                    return state;
+                });
+            },
+            updateServiceWorkerStatus: (val: boolean) => {
+                update((state: GlobalStateInitialType) => {
+                    state.isSWRegistered = val;
                     return state;
                 });
             },
@@ -175,20 +186,28 @@ const globalState: any = {
                     return state;
                 });
             },
-
-            /*
-            updateSnackBar: (info: SnackBarInfoType) => {
+            appendSnackBarToList: (data: SnackBarType) => {
+                const snackBarID: string = 'sb-' + new Date().getTime();
                 update((state: GlobalStateInitialType) => {
-                    state.showSnackBar = info.isShown;
-                    state.snackBarMessage = !!info.isShown ? info.message : '';
-                    state.snackBarHasCTA = !!info.hasCTA;
-                    state.snackBarCTAButtonLabel = !!info.CTAButtonLabel ? info.CTAButtonLabel : '';
-                    state.snackBarCTAClickHandler = !!info.CTAClickHandler ? info.CTAClickHandler : () => null;
-                    state.snackBarCloseHandler= !!info.closeHandler ? info.closeHandler : () => null;
-
+                    const curSnackBarList = state.snackBarListData!;
+                    curSnackBarList.push({
+                        ...data,
+                        id: snackBarID,
+                    });
+                    state.snackBarListData = curSnackBarList;
                     return state;
                 });
             },
+            removeSnackBarFromList: (id: string) => {
+                update((state: GlobalStateInitialType) => {
+                    const curSnackBarList = state.snackBarListData!;
+                    const newSnackBarList = curSnackBarList.filter((item: SnackBarType) => item.id !== id);
+                    state.snackBarListData = newSnackBarList;
+                    return state;
+                });
+            },
+
+            /*
             updateUserInfoByKey: (key: string, info: any) => {
                 update((state: GlobalStateInitialType) => {
                     const newState = {

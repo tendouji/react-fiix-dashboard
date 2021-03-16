@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { lighten, rgba } from "polished";
 import { 
-    animations,
+    durations,
     colorRange,
     elementSizes, 
     fontSizes, 
@@ -111,7 +111,7 @@ const ModalWrapper = styled.div<StyledColorProps>`
     justify-content: center;
     align-items: center;
     opacity: 0;
-    transition: opacity ${animations.Transition};
+    transition: opacity ${durations.Transition};
 
     & .overlay {
         position: fixed;

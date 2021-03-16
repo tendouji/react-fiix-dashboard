@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { lighten } from "polished";
 import { 
-    animations,
+    durations,
     colorRange,
     elementSizes, 
     fontSizes, 
@@ -49,11 +49,11 @@ const FooterWrapper = styled.footer<StyledColorProps>`
         height: ${ elementSizes.FooterHeight };
         padding: 0 0 0 ${ gaps.Small };
         justify-content: center;
-        transition: all ${ animations.Transition };
+        transition: all ${ durations.Transition };
         
         & .material-icons {
             font-size: ${ fontSizes.Small };    
-            transition: font-size ${ animations.Transition };
+            transition: font-size ${ durations.Transition };
         }
     }
 
@@ -62,7 +62,7 @@ const FooterWrapper = styled.footer<StyledColorProps>`
         font-size: ${ fontSizes.Small };
         white-space: nowrap;
         box-sizing: border-box;
-        transition: width ${ animations.Transition };
+        transition: width ${ durations.Transition };
     }
 
 

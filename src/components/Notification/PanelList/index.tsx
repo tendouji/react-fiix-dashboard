@@ -2,7 +2,7 @@ import React from "react";
 import { darken, lighten, rgba } from "polished";
 import styled from "styled-components";
 import { 
-    animations,
+    durations,
     colorRange,
     elementSizes, 
     gaps 
@@ -72,7 +72,7 @@ const NotificationPanelListWrapper = styled.div<StyledColorProps>`
     width: 0;
     padding-left: ${ gaps.Common };
     height: 100%;
-    transition: width ${animations.Transition};
+    transition: width ${durations.Transition};
     overflow: hidden;
     
     & .clicker {

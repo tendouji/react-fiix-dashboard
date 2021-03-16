@@ -1,6 +1,8 @@
 import React from "react";
+import { useHistory } from "react-router";
 import Button from "../../../components/Button";
 import withMeiosis, { WithMeiosisProps } from "../../../components/HOC";
+import { routes } from "../../../constants/routes";
 
 type ComponentAlertProps = {
     className?: string,
@@ -8,6 +10,8 @@ type ComponentAlertProps = {
 }
 
 const ComponentAlert: React.FC<ComponentAlertProps & WithMeiosisProps> = ({globalActions, globalStates, className}) => {
+    const history = useHistory();
+
     const openModalHandler = (type: string) => {
         let modalObj = {};
         switch(type) {
@@ -116,6 +120,33 @@ const ComponentAlert: React.FC<ComponentAlertProps & WithMeiosisProps> = ({globa
         }
         globalActions.openModal(modalObj);
     }
+
+    const showSnackBarHandler = (type: string) => {
+        let snackBarObj = {};
+        switch(type) {
+            case 'basic': 
+                snackBarObj = {
+                    isShown: true,
+                    message: 'This is a basic snack bar with close button',
+                    hasAction: false
+                }
+            break;
+            case 'with-action': 
+                snackBarObj = {
+                    isShown: true,
+                    message: 'This is a snack bar with extra call to action button',
+                    hasAction: true,
+                    actionButtonLabel: 'Go to Accordion page',
+                    actionClickHandler: () => {
+                        history.push(routes.COMPONENT_ACCORDION);
+                    }
+                }
+            break;
+            default:
+        }
+        // globalActions.showSnackBar(snackBarObj);
+        globalActions.appendSnackBarToList(snackBarObj);
+    }
     
     return <div className="component-alert">
         <h1>Alerts</h1>
@@ -146,6 +177,25 @@ const ComponentAlert: React.FC<ComponentAlertProps & WithMeiosisProps> = ({globa
 
                 <h4>Large modal</h4>
                 <Button onClick={() => openModalHandler('wide')}>Open modal</Button>
+                <br />
+                <br />
+            </div>
+        </div>
+                
+        <h2>Snack Bar Prompts</h2>
+        
+        <div className="columnised">
+            <div className="col-50">
+                <h4>Basic Snack Bar</h4>
+                <Button onClick={() => showSnackBarHandler('basic')}>Show Snack Bar</Button>
+                <br />
+                <br />
+                <br />
+            </div>
+            <div className="col-50">
+                <h4>Snack Bar with Call to Action button</h4>
+                <Button onClick={() => showSnackBarHandler('with-action')}>Show Snack Bar</Button>
+                <br />
                 <br />
                 <br />
             </div>

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { lighten } from "polished";
 import { 
-    animations,
+    durations,
     colorRange,
     elementSizes, 
     fontSizes,
@@ -129,7 +129,7 @@ const AccordionListWrapper = styled.div<StyledColorProps>`
         height: 0;
         overflow: hidden;
         border-top: ${ props => elementSizes.Border1Pixel(lighten(colorRange.L5, props.themeColor.grayColor!)) };
-        transition: height ${ animations.Transition };
+        transition: height ${ durations.Transition };
         
         & .pad-wrapper {
             padding: ${ gaps.Common }; 

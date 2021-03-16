@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { 
     elementSizes, 
     gaps, 
-    animations, 
+    durations, 
     fontSizes, 
     colorRange
 } from "../../constants/layout";
@@ -130,12 +130,12 @@ const innerListStyle = (themeColor: ThemeColorType) => `
         width: 2rem;
         margin-right: ${ gaps.XSmall };
         text-align: center;
-        transition: all ${ animations.Transition };
+        transition: all ${ durations.Transition };
     }
 
     & .text {
         font-size: ${ fontSizes.Common };
-        transition: font ${ animations.Transition };
+        transition: font ${ durations.Transition };
     }
 
     &:hover {
@@ -192,7 +192,22 @@ const NavigationListWrapper = styled.ul<StyledColorProps>`
                 }
 
                 & .text {
-                    font-size: inherit;
+                    font-size: ${ fontSizes.Common };
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: ${elementSizes.MediaScreenMediumWidth}) {
+        & li {
+            & > a {
+                & .icon {
+                    width: ${ elementSizes.MenuCloseWidth }; 
+                    margin-right: 0;
+                }
+        
+                & .text {
+                    font-size: 0;
                 }
             }
         }
@@ -228,7 +243,7 @@ const NavigationSubMenuWrapper = styled.div<StyledColorProps>`
         max-height: 0;
         overflow: hidden;
         list-style: none;    
-        transition: max-height ${ animations.Transition };
+        transition: max-height ${ durations.Transition };
 
         & > li {
             & > a {
@@ -310,7 +325,7 @@ const NavigationSubMenuWrapper = styled.div<StyledColorProps>`
             }
 
             & .text {
-                font-size: inherit;
+                font-size: ${ fontSizes.Common };
             }
 
             &:after {
@@ -318,9 +333,42 @@ const NavigationSubMenuWrapper = styled.div<StyledColorProps>`
             }
         }
 
+        & ul {
+            & > li {
+                & > a {
+                    & .text {
+                        font-size: ${fontSizes.Small};
+                    }
+                }
+            }
+        }
+
         &.current {
             & > ul {
                 max-height: ${ elementSizes.SubMenuExpandedMaxHeight };
+            }
+        }
+    }
+
+    @media screen and (max-width: ${elementSizes.MediaScreenMediumWidth}) {
+        & .menu-title {
+            & .icon {
+                width: ${ elementSizes.MenuCloseWidth }; 
+                margin-right: 0;
+            }
+    
+            & .text {
+                font-size: 0;
+            }
+
+            &:after {
+                opacity: 0;
+            }
+        }
+
+        &.current {
+            & > ul {
+                max-height: 0;
             }
         }
     }

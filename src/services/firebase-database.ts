@@ -1,21 +1,21 @@
 class FirebaseDB {
-    firebaseDB = null;
-    deviceFCM = null;
+    firebaseDB:any = null;
+    deviceFCM:any = null;
 
-    constructor(firebaseDB) {
+    constructor(firebaseDB: any) {
         this.firebaseDB = firebaseDB;
         this.deviceFCM = this.firebaseDB.child('device-fcm');
     }
 
     getSnapshot() {
         return this.deviceFCM.get()
-            .then(function(snapshot) {
+            .then(function(snapshot: any) {
                 if(snapshot.exists()) {
                     return { data: snapshot.val() }
                 } else {
                     return { data: {} };
                 }
-            }).catch(function(error) {
+            }).catch(function(error: any) {
                 return { 
                     error: true,
                     data: error
@@ -23,10 +23,10 @@ class FirebaseDB {
             });
     }
 
-    checkTokenExist(token) {
+    checkTokenExist(token: string) {
         let curFCMSnapshot = null;
         return this.deviceFCM.get() // implement getSnapshot here
-            .then(function(snapshot) {
+            .then(function(snapshot: any) {
                 if(snapshot.exists()) {
                     curFCMSnapshot = snapshot.val();
 
@@ -46,7 +46,7 @@ class FirebaseDB {
                 } else {
                     return { existed: false };
                 }
-            }).catch(function(error) {
+            }).catch(function(error: any) {
                 return { 
                     error: true,
                     data: error
@@ -54,7 +54,7 @@ class FirebaseDB {
             });
     }
 
-    addToken(user, token) {
+    addToken(user: string, token: string) {
         // console.log('addToken', user, token);
         return this.deviceFCM
             .push()
@@ -62,7 +62,7 @@ class FirebaseDB {
             .then(() => {
                 return { success: true };
             })
-            .catch((error) => {
+            .catch((error: any) => {
                 return { 
                     error: true,
                     data: error
@@ -70,14 +70,14 @@ class FirebaseDB {
             });
     }
 
-    updateToken(key, user, token) {
+    updateToken(key: string, user: string, token: string) {
         // console.log('updateToken', key, user, token);
         return this.deviceFCM.child(key)
         .update({user, token})
         .then(() => {
             return { success: true };
         })
-        .catch((error) => {
+        .catch((error: any) => {
             return { 
                 error: true,
                 data: error
@@ -85,9 +85,9 @@ class FirebaseDB {
         });
     }
 
-    addOrUpdateToken(user, token) {
+    addOrUpdateToken(user: string, token: string) {
         this.checkTokenExist(token)
-        .then(response => {
+        .then((response: any) => {
             if(!response.error) {
                 if(!!response.existed) {
                     this.updateToken(response.data.key, user, token);
@@ -98,3 +98,5 @@ class FirebaseDB {
         });
     }
 }
+
+export default FirebaseDB;

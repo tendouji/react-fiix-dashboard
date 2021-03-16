@@ -8,7 +8,7 @@ import { assets, routes } from "./routes";
 
 export const appData: GeneralObjType = {
     title: 'FiiX',
-    firebaseServerKey: '', // NOTE: this needs to store somewhere, but for testing purposes, let's put here first
+    firebaseServerKey: 'AAAA_cHy0r8:APA91bGyRRvDAM35Rak5ixCFruqjkSjYvTUz51Ui33ERLBR24o-C-EDmsKLjlj7Np4joxQp24EvQTEcjTMQPosRkGPRuszgNufbUtsw2ld2zp0DSq0vsQAoNHpMHmvRvGFynkQkRv6nc', // NOTE: this needs to store somewhere, but for testing purposes, let's put here first
     logoPath: assets.IMAGE + '/logo-site.png',
     profilePath: assets.IMAGE + '/profiles/profile.jpg',
 };

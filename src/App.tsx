@@ -6,12 +6,12 @@ import {
     Route,
     withRouter,
 } from 'react-router-dom';
-import { lighten } from 'polished';
+import { lighten, rgba } from 'polished';
 import styled from 'styled-components';
 import { 
     gaps, 
     elementSizes, 
-    animations, 
+    durations, 
     colorRange,
     fontSizes
 } from './constants/layout';
@@ -26,12 +26,18 @@ import Header from './components/Header';
 import Modal from './components/Modal';
 import SideMenu from './components/SideMenu';
 import NotificationPanelList from './components/Notification/PanelList';
-import { StyledColorProps } from './models';
+import { GeneralObjType, StyledColorProps } from './models';
+import FirebaseApp from './services/firebase-app';
+import SnackBarGroup from './components/SnackBar';
 
 
 declare global {
     interface Window {
+        appObj: GeneralObjType;
+        firebase: any;
         firebaseDB: any;
+        firebaseInitObj: GeneralObjType;
+        handleFirebaseMessagePayload: any;
     }
 }
 
@@ -49,7 +55,17 @@ class App extends React.Component<AppProps, AppState> {
     resizeDoneEvent: CustomEvent<string> = new CustomEvent('resizeEnd', { detail: 'resizeEnded' });
 
     componentDidMount() {
+        const { globalStates, globalActions } = this.props;
+
         window.addEventListener('resize', this.onWindowResizeHandler);
+
+        const firebaseApp = new FirebaseApp(window.firebase); 
+        
+        if(!!globalStates && !globalStates.isSWRegistered) {
+            firebaseApp.setupServiceWorker().then(response => {
+                globalActions.updateServiceWorkerStatus(!!response.registered);
+            });
+        }
     }
 
     componentWillUnmount() {
@@ -83,7 +99,7 @@ class App extends React.Component<AppProps, AppState> {
     onHoverShowMenuHandler = (show: boolean) => {
         const dashboardDom = this.dashboardRef.current;
         if(dashboardDom) {
-            if(dashboardDom.classList.contains('menu-close')) {
+            if(dashboardDom.classList.contains('menu-close') || window.innerWidth < 800) {
                 if(show) dashboardDom.classList.add('peek');
                 else dashboardDom.classList.remove('peek');
             }
@@ -126,6 +142,7 @@ class App extends React.Component<AppProps, AppState> {
                             </Switch>
                         )}
                         <Modal />
+                        <SnackBarGroup />
                         <NotificationPanelList />
                     </DashboardWrapper>
                 </DashboardScreen>
@@ -168,7 +185,7 @@ export default withMeiosis(App);
 const DashboardWrapper = styled.div<StyledColorProps>`
     height: 100%;
     padding-left: ${ elementSizes.MenuWidth };
-    transition: padding-left ${ animations.Transition };
+    transition: padding-left ${ durations.Transition };
 
     &.no-menu {
         padding-left: 0;
@@ -202,6 +219,27 @@ const DashboardWrapper = styled.div<StyledColorProps>`
         }
     }
 
+    input[type="text"], 
+    input[type="email"], 
+    input[type="password"],
+    textarea {
+        width: 100%;
+        padding: ${gaps.Small};
+        border: ${ props => elementSizes.Border1Pixel(lighten(colorRange.L4, props.themeColor.grayColor!)) };
+        border-radius: ${elementSizes.BorderRadius};
+        line-height: ${fontSizes.Large};
+        box-sizing: border-box;
+        font-family: 'Roboto', 'Arial', 'Helvetica Neue', sans-serif;
+        resize: none;
+
+        &:hover,
+        &:focus {
+            box-shadow: 0px 0px 0px 3px ${ props => rgba(props.themeColor.primaryColor, 0.4) };
+            border: ${ props => elementSizes.Border1Pixel(rgba(props.themeColor.primaryColor, 0.4)) };
+            outline: none;
+        }
+    }
+
     & .highlighted {
         font-weight: 500;
     }
@@ -218,8 +256,12 @@ const DashboardWrapper = styled.div<StyledColorProps>`
         & .col-50 {
             width: calc(50% - ${gaps.Common} / 2);
         }
+    }
 
-        @media screen and (max-width: ${elementSizes.MediaScreenMediumWidth}) {
+    @media screen and (max-width: ${elementSizes.MediaScreenMediumWidth}) {
+        padding-left: ${ elementSizes.MenuCloseWidth };
+
+        & .columnised {
             display: block;
     
             & .col-50 {

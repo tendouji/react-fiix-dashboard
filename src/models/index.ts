@@ -89,6 +89,16 @@ export type ModalType = {
     allowOverlayClose?: boolean,
 }
 
+export type SnackBarType = {
+    isShown: boolean,
+    message: string,
+    id?: string,
+    hasAction?: boolean,
+    actionButtonLabel?: string,
+    actionClickHandler?: () => void,
+    closeHandler?: () => void,
+}
+
 export type AccordionListType = {
     title: string,
     children: React.ReactNode,
@@ -109,30 +119,28 @@ export type TableDataType = {
 export type GlobalStateInitialType = {
     curPage: string,
     isLoggedIn: boolean,
+    isSWRegistered: boolean,
     lockPageScroll: boolean,
     showNotificationPanel: boolean,
     themeColor: ThemeColorType,
     modalData?: ModalType,
     userInfo?: UserInfoType,
+    snackBarListData?: SnackBarType[],
     // shareInfo: ShareInfoType,
-    // showSnackBar: boolean,
-    // snackBarMessage: string,
-    // snackBarHasCTA: boolean,
-    // snackBarCTAButtonLabel: string,
-    // snackBarCTAClickHandler: () => void,
-    // snackBarCloseHandler: () => void,
 }
 
 export type GlobalActionType = {
     updateCurPage: (val: PageType) => void,
     updateLoggedSession: (val: boolean) => void,
+    updateServiceWorkerStatus: (val: boolean) => void,
     updateThemeColor: (data: ThemeColorType) => void,
     updateUserInfo: (data: UserInfoType) => void,
     openModal: (info: ModalType) => void,
     closeModal: () => void,
     showHideNotificationPanel: (data: boolean) => void,
     updateLockPageScroll: (data: boolean) => void,
-    // updateSnackBar: (info: SnackBarInfoType) => void,
+    appendSnackBarToList: (info: SnackBarType) => void,
+    removeSnackBarFromList: (id: string) => void,
     // updateUserInfoByKey: (key: string, info: any) => void,
     // updateShareInfo: (info: ShareInfoType) => void,
 }

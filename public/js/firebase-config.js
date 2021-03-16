@@ -1,3 +1,5 @@
+// Code here is shared between Service Worker and inside components
+
 const firebaseInitObj = {
     apiKey: "AIzaSyBYmq6SLkRUEa0mTblclScInyKUssD73sI",
     authDomain: "fiix-dashboard.firebaseapp.com",
@@ -10,7 +12,7 @@ const firebaseInitObj = {
 };
 
 const handleFirebaseMessagePayload = (payload, origin) => {
-    console.log(origin, 'handleFirebaseMessagePayload', payload);
+    // console.log(origin, 'handleFirebaseMessagePayload', payload);
     const notificationData = !!payload.data && !!payload.data.notification 
     ? payload.data.notification
     : null;
@@ -29,3 +31,9 @@ const handleFirebaseMessagePayload = (payload, origin) => {
 
     return {};
 };
+
+if(typeof window !== 'undefined') { 
+    // NOTE: need to check, as this code is also used in Service Worker, which doesn't have window object
+    window.firebaseInitObj = firebaseInitObj;
+    window.handleFirebaseMessagePayload = handleFirebaseMessagePayload;
+}
