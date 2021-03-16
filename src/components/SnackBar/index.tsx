@@ -56,7 +56,7 @@ const SnackBarGroup: React.FC<WithMeiosisProps & SnackBarGroupProps> = ({globalA
 
 export default withMeiosis(SnackBarGroup);
 
-const itemH: number = 64 + 10; // height + margin bottom
+const itemH: number = 56 + 10; // height + margin bottom
 const maximumSnackBarCount: number = 3;
 
 const SnackBarGroupWrapper = styled.div<StyledColorProps>`

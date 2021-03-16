@@ -44,7 +44,8 @@ const elementSizes: {[key: string]: any}  = {
     AccordionMaxWidth: '25rem',
     AccordionTitleHeight: '2.5rem',
     NotificationPanelWidth: '15rem',
-    
+    SnackBarHeight: '3.5rem',
+
     BorderRadius: '4px',
     Border1Pixel: (color: string): string => `1px solid ${color}`,
 
@@ -62,7 +63,7 @@ const elementSizes: {[key: string]: any}  = {
 
 const durations: GeneralObjType = {
     Transition: '200ms',
-    SnackBarLifeSpan: '10000ms',
+    SnackBarLifeSpan: '1000000ms',
 };
 
 const styleGroup: GeneralObjType = {

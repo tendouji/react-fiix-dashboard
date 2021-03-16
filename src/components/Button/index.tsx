@@ -36,6 +36,7 @@ const ButtonWrapper = styled.button<StyledColorProps>`
     height: ${ elementSizes.ButtonHeight };
     padding: 0 ${ gaps.Common }; 
     color: #fff;
+    line-height: 1;
     border: 0;
     border-radius: ${elementSizes.BorderRadius};
     text-transform: uppercase;

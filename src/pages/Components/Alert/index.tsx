@@ -144,7 +144,6 @@ const ComponentAlert: React.FC<ComponentAlertProps & WithMeiosisProps> = ({globa
             break;
             default:
         }
-        // globalActions.showSnackBar(snackBarObj);
         globalActions.appendSnackBarToList(snackBarObj);
     }
     

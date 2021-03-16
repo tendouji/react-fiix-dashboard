@@ -95,4 +95,19 @@ const FooterWrapper = styled.footer<StyledColorProps>`
             width: 100%;
         }
     }
+    
+    @media screen and (max-width: ${elementSizes.MediaScreenMediumWidth}) {
+        & .icon {
+            width: ${ elementSizes.MenuCloseWidth };
+            padding: 0;
+            
+            & .material-icons {
+                font-size: ${ fontSizes.XLarge };
+            }
+        }
+        
+        & .text {
+            width: 0;
+        }
+    }
 `;

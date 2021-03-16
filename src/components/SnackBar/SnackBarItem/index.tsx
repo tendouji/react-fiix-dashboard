@@ -12,12 +12,17 @@ import withMeiosis, { WithMeiosisProps } from "../../HOC";
 import { lighten } from "polished";
 import Button from "../../Button";
 import { nextTick } from "process";
+import { getDurationsNumber } from "../../../helpers";
 
 
 type SnackBarProps = {
     snackBarData: SnackBarType,
     className?: string,
 };
+
+const snackBarDurationPerSegment = getDurationsNumber(durations.SnackBarLifeSpan) / 10;
+console.log(snackBarDurationPerSegment);
+
 
 const SnackBar: React.FC<WithMeiosisProps & SnackBarProps> = ({globalActions, globalStates, snackBarData, className}) => {
     const [showSnackBar, setShowSnackBar] = useState(false);
@@ -32,7 +37,7 @@ const SnackBar: React.FC<WithMeiosisProps & SnackBarProps> = ({globalActions, gl
     const startAnimation = (time: number) => {
         const deltaTime = time - previousTimeRef.current!;
 
-        if(deltaTime >= 1000) {
+        if(deltaTime >= snackBarDurationPerSegment) {
             tempPercentage += 10;
             previousTimeRef.current = time;
             setLoaderBarPercentage(tempPercentage);
@@ -94,7 +99,8 @@ export default withMeiosis(SnackBar);
 const SnackBarWrapper = styled.div<StyledColorProps>`
     display: flex;
     position: relative;
-    padding: ${gaps.Common};
+    height: ${elementSizes.SnackBarHeight};
+    padding: 0 ${gaps.Common};
     margin-bottom: ${gaps.Small};
     box-sizing: border-box;
     border-radius: ${elementSizes.BorderRadius};
@@ -105,7 +111,15 @@ const SnackBarWrapper = styled.div<StyledColorProps>`
     overflow: hidden;
     transition: bottom linear ${durations.Transition};
     
-    & .text { }
+    & .text { 
+        max-height: calc(2rem * 1.2);
+        line-height: 1.2;
+        font-size: ${fontSizes.Common};
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;          
+    }
     
     & .btn {
         margin-left: ${gaps.Small};
@@ -125,7 +139,7 @@ const SnackBarWrapper = styled.div<StyledColorProps>`
         height: 5px;
         width: 100%;
         background-color: ${ props => lighten(colorRange.L3, props.themeColor.secondaryColor) };
-        transition: width 1000ms linear;
+        transition: width ${snackBarDurationPerSegment}ms linear;
         content: '';
     }
         
