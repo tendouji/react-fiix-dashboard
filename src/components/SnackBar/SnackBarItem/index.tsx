@@ -118,18 +118,12 @@ const SnackBarWrapper = styled.div<StyledColorProps>`
         overflow: hidden;
         display: -webkit-box;
         -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;          
+        -webkit-box-orient: vertical;
     }
     
     & .btn {
         margin-left: ${gaps.Small};
         background-color: #fff;
-    }
-
-    & .material-icons {
-        margin-left: ${gaps.XSmall};
-        margin-right: -${gaps.XSmall};
-        font-size: ${fontSizes.Large};
     }
 
     & .loader-bar {
@@ -144,4 +138,10 @@ const SnackBarWrapper = styled.div<StyledColorProps>`
     }
         
     &.show { }
+
+    @media screen and (max-width: ${elementSizes.MediaScreenSmallWidth}) {
+        & .btn {
+            margin-left: ${gaps.XSmall};
+        }
+    }
 `;

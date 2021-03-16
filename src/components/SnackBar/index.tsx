@@ -72,8 +72,8 @@ const SnackBarGroupWrapper = styled.div<StyledColorProps>`
     & .snackbar-container {
         position: absolute;
         bottom: 0;
-        left: 0;
-        width: 100%;
+        right: 0;
+        // width: 100%;
         // transition: top ${durations.Transition};
     }
 `;

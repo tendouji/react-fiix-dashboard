@@ -4,6 +4,7 @@ import { lighten } from "polished";
 import { 
     colorRange,
     elementSizes, 
+    fontSizes, 
     gaps 
 } from "../../constants/layout";
 import withMeiosis, { WithMeiosisProps } from "../HOC";
@@ -50,6 +51,12 @@ const ButtonWrapper = styled.button<StyledColorProps>`
         margin-left: ${ gaps.XSmall };
     }
 
+    & .material-icons {
+        margin-left: ${gaps.XSmall};
+        margin-right: -${gaps.XSmall};
+        font-size: ${fontSizes.Large};
+    }
+
     &:hover {
         background-color: ${props => lighten(colorRange.L2, props.themeColor.primaryColor)};
     }
@@ -77,6 +84,16 @@ const ButtonWrapper = styled.button<StyledColorProps>`
             &:after {
                 border: 2px solid ${props => lighten(colorRange.L2, props.themeColor.primaryColor)};
             }
+        }
+    }
+
+    @media screen and (max-width: ${elementSizes.MediaScreenMediumWidth}) {
+        padding: 0 ${ gaps.Small }; 
+        font-size: ${fontSizes.Small};
+
+        & .material-icons {
+            margin-left: 0.2rem;
+            margin-right: -0.2rem;
         }
     }
 `;

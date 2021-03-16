@@ -63,7 +63,7 @@ const elementSizes: {[key: string]: any}  = {
 
 const durations: GeneralObjType = {
     Transition: '200ms',
-    SnackBarLifeSpan: '1000000ms',
+    SnackBarLifeSpan: '10000ms',
 };
 
 const styleGroup: GeneralObjType = {

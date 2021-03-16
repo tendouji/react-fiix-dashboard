@@ -136,7 +136,7 @@ const ComponentAlert: React.FC<ComponentAlertProps & WithMeiosisProps> = ({globa
                     isShown: true,
                     message: 'This is a snack bar with extra call to action button',
                     hasAction: true,
-                    actionButtonLabel: 'Go to Accordion page',
+                    actionButtonLabel: 'Accordion page',
                     actionClickHandler: () => {
                         history.push(routes.COMPONENT_ACCORDION);
                     }
