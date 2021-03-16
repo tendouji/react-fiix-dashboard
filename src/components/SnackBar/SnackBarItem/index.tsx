@@ -21,7 +21,6 @@ type SnackBarProps = {
 };
 
 const snackBarDurationPerSegment = getDurationsNumber(durations.SnackBarLifeSpan) / 10;
-console.log(snackBarDurationPerSegment);
 
 
 const SnackBar: React.FC<WithMeiosisProps & SnackBarProps> = ({globalActions, globalStates, snackBarData, className}) => {

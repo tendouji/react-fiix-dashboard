@@ -13,19 +13,21 @@ const firebaseInitObj = {
 
 const handleFirebaseMessagePayload = (payload, origin) => {
     // console.log(origin, 'handleFirebaseMessagePayload', payload);
-    const notificationData = !!payload.data && !!payload.data.notification 
-    ? payload.data.notification
+    const notificationData = !!payload.data 
+    ? payload.data
     : null;
-
+    
     if(!!notificationData) {
-        const {title, ...options} = JSON.parse(notificationData);
-
+        const {title, ...options} = notificationData;
         return {
             title: title || 'Test Notification Title',
             options: {
                 body: options.body || 'Test Notification Message',
                 icon: options.icon || '/images/logo-site.png',
-            }
+                data: {
+                    url: options.url || null,
+                }
+            },
         }
     }
 

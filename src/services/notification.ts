@@ -20,14 +20,18 @@ class Notification {
                 'Authorization': 'key=' + appData.firebaseServerKey,
                 'Content-Type': 'application/json' 
             },
-            body: JSON.stringify({ 
+            body: JSON.stringify({
+                // NOTE: if notification object is included, setBackgroundMessageHandler will not work 
+                // notification: {
+                //     title: this.notificationTitle,
+                //     body: this.notificationMessage,
+                //     icon: appData.logoPath,
+                // },
                 data: {
-                    notification: {
-                        title: this.notificationTitle,
-                        body: this.notificationMessage,
-                        icon: appData.logoPath,
-                        click_action: appData.siteURL,
-                    }
+                    title: this.notificationTitle,
+                    body: this.notificationMessage,
+                    icon: appData.logoPath,
+                    url: appData.siteURL,
                 },
                 to
             })

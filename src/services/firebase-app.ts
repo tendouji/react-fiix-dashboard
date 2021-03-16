@@ -45,7 +45,8 @@ class FirebaseApp {
             
             this.firebaseMessaging.onMessage((payload: any) => {
                 const notificationData = window.handleFirebaseMessagePayload(payload, 'onMessage');
-        
+                
+                // console.log('onMessage', notificationData);
                 if(!!notificationData.title) {
                     navigator.serviceWorker.getRegistrations().then(registration => {
                         registration[0].showNotification(

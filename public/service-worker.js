@@ -28,6 +28,13 @@ self.addEventListener('fetch', (e) => {
     );
 });
 
+self.addEventListener('notificationclick', (e) => {
+    const redirect = (!!e.notification.data && !!e.notification.data.url) ? e.notification.data.url : '';
+    if(clients.openWindow && redirect !== '') {
+        e.waitUntil(clients.openWindow(e.notification.data.url));
+    }
+});
+
 
 // FIREBASE
 firebase.initializeApp(firebaseInitObj);
@@ -37,6 +44,7 @@ const firebaseMessaging = firebase.messaging();
 firebaseMessaging.setBackgroundMessageHandler(function(payload) {
     const notificationData = handleFirebaseMessagePayload(payload, 'setBackgroundMessageHandler');
     
+    // console.log('setBackgroundMessageHandler', notificationData);
     if(!!notificationData.title) {
         return self.registration.showNotification(
             notificationData.title,
