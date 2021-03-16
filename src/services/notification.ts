@@ -26,6 +26,7 @@ class Notification {
                         title: this.notificationTitle,
                         body: this.notificationMessage,
                         icon: appData.logoPath,
+                        click_action: appData.siteURL,
                     }
                 },
                 to
