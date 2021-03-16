@@ -14,6 +14,7 @@ export enum PageType {
     Table = 'table',
     Accordion = 'accordion',
     Alert = 'alert',
+    Miscellaneous = 'miscellaneous',
     FAQ = 'faq',
 }
 

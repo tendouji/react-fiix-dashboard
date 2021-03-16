@@ -70,10 +70,10 @@ export const pageList: PageObjectType[] = [
                 icon: 'table_view',
             },
             {
-                type: PageType.Table,
+                type: PageType.Miscellaneous,
                 label: 'Miscellaneous',
-                path: routes.COMPONENT_TABLE,
-                icon: 'table_view',
+                path: routes.COMPONENT_MISCELLANEOUS,
+                icon: 'miscellaneous_services',
             },
         ]
     },

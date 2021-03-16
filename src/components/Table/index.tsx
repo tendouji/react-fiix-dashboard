@@ -29,13 +29,13 @@ const Table: React.FC<TableProps & WithMeiosisProps> = ({globalStates, tableData
         >
             <table>
                 { tableData.headerData 
-                    ? <tr className="table-header">{ 
+                    ? <thead><tr className="table-header">{ 
                         tableData.headerData.map( (item: string | number, key: number) => <th key={`th-${key}`}>{ item }</th>) 
-                    }</tr>
+                    }</tr></thead>
                     : null
                 }
-                { tableData.rowData.map( (rowItem: any, key1: number) => 
-                    <tr>{ rowItem.map((item: string | number, key2: number) => 
+                <tbody>{ tableData.rowData.map( (rowItem: any, key1: number) => 
+                    <tr key={`tr-${key1}`}>{ rowItem.map((item: string | number, key2: number) => 
                         <td key={`td-${key1}-${key2}`}>
                             { tableData.headerData 
                                 ? <span className="label">{ tableData.headerData[key2] }</span>
@@ -44,7 +44,7 @@ const Table: React.FC<TableProps & WithMeiosisProps> = ({globalStates, tableData
                             <span className="value">{ item }</span>
                         </td>
                     ) }</tr>
-                )}
+                )}</tbody>
             </table>
         </TableWrapper>
     );
