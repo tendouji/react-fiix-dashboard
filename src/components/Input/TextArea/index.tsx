@@ -48,7 +48,7 @@ const TextArea: React.FC<TextAreaProps & WithMeiosisProps> = ({
                 id={id} 
                 rows={rows} 
                 placeholder={placeholder} 
-                { ...( !!maxLength ? { maxlength: maxLength } : {} ) }
+                { ...( !!maxLength ? { maxLength } : {} ) }
                 onKeyUp={onKeyUpHandler}
             />
             { (!!enableCounter && !!maxLength) && 

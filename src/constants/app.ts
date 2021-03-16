@@ -69,6 +69,12 @@ export const pageList: PageObjectType[] = [
                 path: routes.COMPONENT_TABLE,
                 icon: 'table_view',
             },
+            {
+                type: PageType.Table,
+                label: 'Miscellaneous',
+                path: routes.COMPONENT_TABLE,
+                icon: 'table_view',
+            },
         ]
     },
     {

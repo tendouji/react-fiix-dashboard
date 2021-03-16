@@ -38,7 +38,7 @@ const InputTrailIcon: React.FC<TextAreaProps & WithMeiosisProps> = ({
                 name={id} 
                 id={id} 
                 placeholder={placeholder} 
-                { ...( !!maxLength ? { maxlength: maxLength } : {} ) }
+                { ...( !!maxLength ? { maxLength } : {} ) }
             />
             { (!!hasTrailIcon && !!icon && icon !== '') && 
                 <div className="icon"><div className="material-icons"> { icon }</div></div> }

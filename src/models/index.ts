@@ -116,6 +116,12 @@ export type TableDataType = {
     columnRelayoutResponsive?: boolean,
 }
 
+export type SelectOptionListType = {
+    label: string,
+    value?: string,
+    isSelected?: boolean,
+}
+
 export type GlobalStateInitialType = {
     curPage: string,
     isLoggedIn: boolean,

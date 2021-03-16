@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import CopyClipboard from "../../../components/CopyClipboard";
 import withMeiosis, { WithMeiosisProps } from "../../../components/HOC";
 import InputTrailIcon from "../../../components/Input/InputTrailIcon";
+import Selector from "../../../components/Input/Selector";
 import TextArea from "../../../components/Input/TextArea";
 import Table from "../../../components/Table";
 import { gaps } from "../../../constants/layout";
@@ -58,8 +60,30 @@ const ComponentFormElement: React.FC<ComponentFormElementProps & WithMeiosisProp
             <div className="form-row">
                 <div className="label">Selection</div>
                 <div className="input">
-                    <input type="text" placeholder="Simple Text Input" />
+                    <Selector 
+                        id="demoSelector" 
+                        placeholder="Choose one"
+                        selectedIndex={2}
+                        optionList={[{
+                            label: 'Selection 1',
+                            value: '10'
+                        }, {
+                            label: 'Selection 2',
+                            value: ''
+                        }, {
+                            label: 'Selection 3',
+                            value: '99'
+                        }, {
+                            label: 'Selection 4',
+                            value: 'empty'
+                        }]}
+                    />
                 </div>
+            </div>
+
+            <div>
+                <div id="targetContent">some random text</div>
+                <CopyClipboard targetId="targetContent" />
             </div>
         </ComponentFormElementWrapper>
     </div>;

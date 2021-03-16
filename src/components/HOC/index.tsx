@@ -118,7 +118,11 @@ const withMeiosis = <P extends WithMeiosisProps>(Component: React.ComponentType<
         };
 
         render() {
-            return <Component globalStates={this.state} globalActions={actions} {...this.props as P} />;
+            return <Component 
+                globalStates={this.state} 
+                globalActions={actions} 
+                {...this.props as P} 
+            />;
         }
     }
 
