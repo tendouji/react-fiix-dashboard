@@ -31,7 +31,7 @@ const NotificationForm: React.FC<WithMeiosisProps & NotificationFormProps> = ({g
             className="notification-test-form"
         >
             <h4>Notification Test</h4>
-            <fieldset>
+            <fieldset className="form-content">
                 <p>Enter sample title and message to trigger notification</p>
                 <div className="form-row">
                     <div className="label">Title</div>
@@ -62,30 +62,5 @@ const NotificationFormWrapper = styled.div<StyledColorProps>`
         margin: 0;
         border: 0;
         font-size: ${fontSizes.Common};
-    }
-
-    & .form-row {
-        display: flex;
-        margin-bottom: ${gaps.XSmall};
-        justify-content: space-between;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-
-        & .label {
-            width: 70px;
-            padding-top: ${gaps.Small};
-            font-weight: 500;
-        }
-
-        & .input {
-            width: calc(100% - 70px - ${gaps.XSmall});
-        }
-    }
-
-    & .form-footer {
-        margin-top: ${gaps.Small};
-        text-align: right;
     }
 `;

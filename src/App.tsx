@@ -19,6 +19,7 @@ import { routes } from './constants/routes';
 import Login from './pages/Auth/Login';
 import ComponentAccordion from './pages/Components/Accordion';
 import ComponentAlert from './pages/Components/Alert';
+import ComponentFormElement from './pages/Components/FormElements';
 import ComponentTable from './pages/Components/Table';
 import Dashboard from './pages/Dashboard';
 import withMeiosis, { WithMeiosisProps } from './components/HOC';
@@ -170,6 +171,7 @@ const RoutingComponent: React.FC<{match: any}> = ({match}) => (<>
         */}
         <Route path={routes.DASHBOARD} component={Dashboard} />
         <Route path={routes.COMPONENT_ACCORDION} component={ComponentAccordion} />
+        <Route path={routes.COMPONENT_FORM_ELEMENT} component={ComponentFormElement} />
         <Route path={routes.COMPONENT_ALERT} component={ComponentAlert} />
         <Route path={routes.COMPONENT_TABLE} component={ComponentTable} />
         {/* <Route path="*" render={(props: any) => <Share routeParams={{
@@ -238,6 +240,38 @@ const DashboardWrapper = styled.div<StyledColorProps>`
             border: ${ props => elementSizes.Border1Pixel(rgba(props.themeColor.primaryColor, 0.4)) };
             outline: none;
         }
+    }
+
+    textarea {
+        display: block;
+    }
+
+    .form-content {
+        & .form-row {
+            display: flex;
+            margin-bottom: ${gaps.XSmall};
+            justify-content: space-between;
+
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            & .label {
+                width: 70px;
+                padding-top: ${gaps.Small};
+                font-weight: 500;
+                font-size: ${fontSizes.Common};
+            }
+
+            & .input {
+                width: calc(100% - 70px - ${gaps.XSmall});
+            }
+        }
+    }
+
+    & .form-footer {
+        margin-top: ${gaps.Small};
+        text-align: right;
     }
 
     & .highlighted {

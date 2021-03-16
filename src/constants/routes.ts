@@ -16,6 +16,7 @@ const routes: GeneralObjType = {
     
     get COMPONENTS() { return this.HOME + 'components/' },
     get COMPONENT_TABLE() { return this.COMPONENTS + 'table' },
+    get COMPONENT_FORM_ELEMENT() { return this.COMPONENTS + 'form-element' },
     get COMPONENT_ACCORDION() { return this.COMPONENTS + 'accordion' },
     get COMPONENT_ALERT() { return this.COMPONENTS + 'alerts' },
     

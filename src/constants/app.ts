@@ -60,7 +60,7 @@ export const pageList: PageObjectType[] = [
             {
                 type: PageType.Form,
                 label: 'Form Elements',
-                path: '/components/form',
+                path: routes.COMPONENT_FORM_ELEMENT,
                 icon: 'vertical_split',
             },        
             {
